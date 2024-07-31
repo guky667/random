@@ -32,11 +32,11 @@ function updatePaliaTime() {
 
     // Determine the period of the day
     let periodText = '';
-    if ((paliaHour >= 3 && amPm === 'AM') || (paliaHour < 6 && amPm === 'AM')) {
+    if (paliaHour >= 3 && paliaHour < 6 && amPm === 'AM') {
         periodText = 'Morning';
     } else if ((paliaHour >= 6 && amPm === 'AM') || (paliaHour < 6 && amPm === 'PM')) {
         periodText = 'Day';
-    } else if ((paliaHour >= 6 && paliaHour < 9 && amPm === 'PM')) {
+    } else if (paliaHour >= 6 && paliaHour < 9 && amPm === 'PM') {
         periodText = 'Evening';
     } else if ((paliaHour >= 9 && amPm === 'PM') || (paliaHour < 3 && amPm === 'AM')) {
         periodText = 'Night';
