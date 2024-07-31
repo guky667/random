@@ -34,11 +34,11 @@ function updatePaliaTime() {
     let periodText = '';
     if (paliaHour >= 3 && paliaHour < 6 && amPm === 'AM') {
         periodText = 'Morning';
-    } else if (paliaHour != 12 && (paliaHour >= 6 && amPm === 'AM') || (paliaHour < 6 && amPm === 'PM')) {
+    } else if (paliaHour != 12 && ((paliaHour >= 6 && amPm === 'AM') || (paliaHour < 6 && amPm === 'PM'))) {
         periodText = 'Day';
     } else if (paliaHour >= 6 && paliaHour < 9 && amPm === 'PM') {
         periodText = 'Evening';
-    } else if (paliaHour != 12 && (paliaHour >= 9 && amPm === 'PM') || (paliaHour < 3 && amPm === 'AM')) {
+    } else if (paliaHour != 12 && ((paliaHour >= 9 && amPm === 'PM') || (paliaHour < 3 && amPm === 'AM'))) {
         periodText = 'Night';
     }
     document.getElementById('time-period').textContent = periodText;
