@@ -2,16 +2,16 @@
 
 function updatePaliaTime() {
     let realNow = new Date();
-    let realHour = realNow.getHours();
-    let realMinute = realNow.getMinutes();
+    
     let realSecond = realNow.getSeconds();
+    let realMinute = realNow.getMinutes();
+    let realHour = realNow.getHours();
 
     // Total real seconds elapsed in the current day
     let totalRealSeconds = (realHour * 3600) + (realMinute * 60) + realSecond;
 
     // Palia time: 1 real hour = 24 Palia hours
-    let paliaSecondsPerRealSecond = 24 * 3600 / (1 * 3600); // 1 real hour = 24 in-game hours
-    let totalPaliaSeconds = totalRealSeconds * paliaSecondsPerRealSecond;
+    let totalPaliaSeconds = totalRealSeconds * 24;
 
     // Offset to sync with actual in-game time (adjust this value as needed)
     let offsetMinutes = 2;
@@ -31,21 +31,19 @@ function updatePaliaTime() {
     document.getElementById('palia-time').textContent = formattedPaliaTime;
 
     // Determine the period of the day
-    let periodText = '';
-    if (amPm === 'AM' && paliaHour >= 3 && paliaHour < 6) {
-        periodText = 'Morning';
-    } else if ( (amPm == 'AM' && paliaHour >= 6 && paliaHour < 12) || (amPm == 'PM' && (paliaHour == 12 || paliaHour < 7) ) ) {
-        periodText = 'Day';
-    } else if (amPm == 'PM' && paliaHour >= 7 && paliaHour <= 12) {
+    let periodText = 'Day';
+
+    if (amPm == 'PM' && paliaHour >= 6 && paliaHour < 9) {
         periodText = 'Evening';
-    } else if (amPm == 'AM' && (paliaHour == 12 || paliaHour < 3) ) {
+    } else if ((amPm == 'PM' && paliaHour >=9 && paliaHour != 12) || (amPm == 'AM' && (paliaHour == 12 || paliaHour < 3)) ) {
         periodText = 'Night';
+    } else if (amPm === 'AM' && paliaHour >= 3 && paliaHour < 6) {
+        periodText = 'Morning';
     }
+    
     document.getElementById('time-period').textContent = periodText;
+
+    setTimeout(() => updatePaliaTime(), 415);
 }
 
-// Update the Palia time every second
-setInterval(updatePaliaTime, 1000);
-
-// Initial call to display the time immediately
 updatePaliaTime();
