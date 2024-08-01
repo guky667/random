@@ -34,7 +34,7 @@ function updatePaliaTime() {
     let periodText = '';
     if (amPm === 'AM' && paliaHour >= 3 && paliaHour < 6) {
         periodText = 'Morning';
-    } else if ( (amPm == 'AM' && paliaHour >= 6) || (amPm == 'PM' && paliaHour >= 1 && paliaHour < 7) ) {
+    } else if ( (amPm == 'AM' && paliaHour >= 6) || (amPm == 'PM' && (paliaHour == 12 || paliaHour < 7) ) ) {
         periodText = 'Day';
     } else if (amPm == 'PM' && paliaHour >= 7 && paliaHour <= 12) {
         periodText = 'Evening';
