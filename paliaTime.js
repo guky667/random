@@ -38,7 +38,7 @@ function updatePaliaTime() {
         periodText = 'Day';
     } else if (amPm == 'PM' && paliaHour >= 7 && paliaHour <= 12) {
         periodText = 'Evening';
-    } else if (amPm == 'AM' && paliaHour >= 0 && paliaHour < 3) {
+    } else if (amPm == 'AM' && paliaHour == 12 && paliaHour < 3) {
         periodText = 'Night';
     }
     document.getElementById('time-period').textContent = periodText;
