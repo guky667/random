@@ -13,10 +13,6 @@ function updatePaliaTime() {
     // Palia time: 1 real hour = 24 Palia hours
     let totalPaliaSeconds = totalRealSeconds * 24;
 
-    // Offset to sync with actual in-game time (adjust this value as needed)
-    let offsetMinutes = 2;
-    totalPaliaSeconds += offsetMinutes * 60;
-
     // Convert total Palia seconds to hours and minutes
     let paliaHour = Math.floor((totalPaliaSeconds / 3600) % 24);
     let paliaMinute = Math.floor((totalPaliaSeconds % 3600) / 60);
