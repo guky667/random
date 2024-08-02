@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Palia Time</title>
+    
+    <link rel="icon" type="image/png" href="https://palia.wiki.gg/images/e/ec/Homestead_Alarm_Clock.png">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
         
         body {
+            padding: 0;
             background-color: black;
             color: white;
             font-family: 'Amatic SC', cursive;
-            margin: 0;
-            padding: 0;
+            font-size: 2em;
             overflow: hidden;
         }
 
-        .time-container {
-            padding-left: 0.5em;
-            font-size: 3em;
+        .time-container
+        {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            column-gap: 1em;
         }
 
-        * {
+        h1, h2
+        {
             margin: 0;
+            padding: 0;
         }
     </style>
 </head>
@@ -33,7 +38,8 @@
     <div class="time-container">
         <h1 id="palia-time"></h1>
         <h2 id="time-period"></h2>
+        <div></div>
     </div>
-    <script src="https://guky667.github.io/random/paliaTime.js"></script>
+<script src="https://guky667.github.io/random/paliaTime.js"></script>
 </body>
 </html>
