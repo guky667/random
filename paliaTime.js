@@ -1,30 +1,34 @@
-// Created by ChatGPT 4o
+// There seems to be a bit of an offset between reading the local time and what the in-game clock shows,
+// so we'll have to adjust for that - modify your local storage if it doesn't perfectly match - for me 2231 worked perfectly
+
+// Read the offset value from local storage
+let offset = parseInt(localStorage.getItem('paliaOffset'), 10);
+
+// If no offset is found or it's not a valid number, use the default offset
+if (isNaN(offset)) {
+    offset = 2000;
+    // Set default offset in local storage
+    localStorage.setItem('paliaOffset', offset.toString());
+}
 
 function updatePaliaTime() {
-    let realNow = new Date();
-    
-    let realSecond = realNow.getSeconds();
-    let realMinute = realNow.getMinutes();
-    let realHour = realNow.getHours();
+    let unixTimestamp = new Date().getTime();
 
-    // Total real seconds elapsed in the current day
-    let totalRealSeconds = (realHour * 3600) + (realMinute * 60) + realSecond;
+    // Calculate total Palia seconds
+    let totalPaliaSeconds = Math.floor((unixTimestamp + offset) / 1000) * 24;
 
-    // Palia time: 1 real hour = 24 Palia hours
-    let totalPaliaSeconds = totalRealSeconds * 24;
-
-    // Convert total Palia seconds to hours and minutes
+    // Calculate in-game hours and minutes
     let paliaHour = Math.floor((totalPaliaSeconds / 3600) % 24);
     let paliaMinute = Math.floor((totalPaliaSeconds % 3600) / 60);
-    let amPm = paliaHour >= 12 ? 'PM' : 'AM';
 
-    // Adjust hour for 12-hour format
+    // Determine AM/PM and adjust hour for 12-hour format
+    let amPm = paliaHour >= 12 ? 'PM' : 'AM';
     paliaHour = paliaHour % 12;
     paliaHour = paliaHour ? paliaHour : 12; // the hour '0' should be '12'
 
-    // Format the time as HH:MM
-    let formattedPaliaTime = `${String(paliaHour).padStart(2, '0')}:${String(paliaMinute).padStart(2, '0')} ${amPm}`;
-    document.getElementById('palia-time').textContent = formattedPaliaTime;
+    // Format the time as HH:MM AM/PM
+    let paliaTime = `${String(paliaHour).padStart(2, '0')}:${String(paliaMinute).padStart(2, '0')} ${amPm}`;
+    document.getElementById('palia-time').textContent = paliaTime;
 
     // Determine the period of the day
     let periodText = 'Day';
@@ -36,10 +40,9 @@ function updatePaliaTime() {
     } else if (amPm === 'AM' && paliaHour >= 3 && paliaHour < 6) {
         periodText = 'Morning';
     }
-    
-    document.getElementById('time-period').textContent = periodText;
 
-    setTimeout(() => updatePaliaTime(), 415);
+    document.getElementById('time-period').textContent = periodText;
 }
 
-updatePaliaTime();
+updatePaliaTime()
+setInterval(updatePaliaTime, 500);
