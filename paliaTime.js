@@ -41,7 +41,7 @@
                 periodText = 'Morning';
             }
 
-            document.getElementById('star').src = `${periodText}.png`
+            document.getElementById('star').src = `https://guky667.github.io/paliaTime/${periodText}.png`
             document.getElementById('time-period').textContent = periodText;
 
             hour_offset = 0
