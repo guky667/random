@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Palia Time</title>
+    
+    <link rel="icon" type="image/png" href="https://palia.wiki.gg/images/e/ec/Homestead_Alarm_Clock.png">
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1em;
+            overflow: hidden;
+        }
+
+        .time-container
+        {
+            margin-top:1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .clock{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1, h2
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        #cursor{
+            z-index: 2 !important;
+        }
+
+        #pill{
+            background-color: #3a405773;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            padding-left: 1.5em;
+            padding-right: 1.5em;
+            margin: 1em;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="time-container">
+        <div class="clock">
+            <img src="https://guky667.github.io/paliaTime/empty-clock.png" style="position: absolute; z-index: -1">
+            <img id="star" style="position: absolute; padding-top: 6px">
+            <img src="https://guky667.github.io/paliaTime/big.png" id="cursor">
+        </div>
+        <div id="pill">
+            <h1 id="palia-time"></h1> 
+        </div>
+        
+        <h2 id="time-period"></h2>
+    </div>
+    <script src="https://guky667.github.io/paliaTime/paliaTime.js"></script>
+
+
+</body>
+</html>
