@@ -2,11 +2,11 @@
 // so we'll have to adjust for that - modify your local storage if it doesn't perfectly match - for me 2231 worked perfectly
 
 // Read the offset value from local storage
-let offset = parseInt(localStorage.getItem('paliaOffset'), 10);
+let offset = parseInt(localStorage.getItem('paliaOffset'));
 
 // If no offset is found or it's not a valid number, use the default offset
 if (isNaN(offset)) {
-    offset = 2000;
+    offset = 2000; // those are ms
     // Set default offset in local storage
     localStorage.setItem('paliaOffset', offset.toString());
 }
@@ -48,18 +48,18 @@ function updatePaliaTime() {
 
         if((amPm == 'PM' && paliaHour != 12) || (amPm == 'AM' && paliaHour == 12))
         {
-            hour_offset = 12
+            hour_offset = 12;
         }
 
         let paliaTimeInMinutes = (paliaHour + hour_offset) * 60 + paliaMinute;
         let angle = paliaTimeInMinutes / 4; 
 
-        // Apply the rotation: 48 degrees to correct the pointer image starting in the top-left to the top (morning), and 180 because it starts at night actually, lmao
+        // Apply the rotation: 48 degrees offset - to rotate the pointer image starting in the top-left to the top (morning) - and 180 because it starts at night actually, lmao
         document.getElementById('cursor').style.transform = `rotate(${ angle + 48 + 180 }deg)`;
     }
 
     // Initial call to display the cursor immediately
     updatePaliaTime();
 
-    // Update the Palia time and cursor rotation every second
+    // Keep updating the clock every 500ms
     setInterval(updatePaliaTime, 500);

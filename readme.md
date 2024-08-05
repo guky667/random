@@ -1,0 +1,1 @@
+This project is a simple reproduction of the Palia clock, to track in-game time when the UI is hidden (fishing, touring houses, etc.)
