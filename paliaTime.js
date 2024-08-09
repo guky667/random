@@ -23,8 +23,7 @@ function updatePaliaTime() {
 
     // Determine AM/PM and adjust hour for 12-hour format
     let amPm = paliaHour >= 12 ? 'PM' : 'AM';
-    paliaHour = paliaHour % 12;
-    paliaHour = paliaHour ? paliaHour : 12; // the hour '0' should be '12'
+    paliaHour = paliaHour % 12 || 12; // the hour '0' should be '12'
 
     // Format the time as HH:MM AM/PM
     let paliaTime = `${String(paliaHour).padStart(2, '0')}:${String(paliaMinute).padStart(2, '0')} ${amPm}`;
@@ -58,7 +57,7 @@ function updatePaliaTime() {
         document.getElementById('cursor').style.transform = `rotate(${ angle + 48 + 180 }deg)`;
     }
 
-    console.log('v.1') // just a hardcoded print so I can check the latest changes made it through
+    console.log('v1.1') // just a hardcoded print so I can check the latest changes made it through
 
     // Initial call to display the cursor immediately
     updatePaliaTime();
