@@ -15,11 +15,11 @@ function updatePaliaTime() {
     let unixTimestamp = new Date().getTime();
 
     // Calculate total Palia seconds
-    let totalPaliaSeconds = Math.floor((unixTimestamp + offset) / 1000) * 24;
+    let totalPaliaSeconds = Math.floor((unixTimestamp + offset) * 0.024);
 
     // Calculate in-game hours and minutes
-    let paliaHour = Math.floor((totalPaliaSeconds / 3600) % 24);
-    let paliaMinute = Math.floor((totalPaliaSeconds % 3600) / 60);
+    let paliaHour = Math.floor(totalPaliaSeconds / 3600) % 24;
+    let paliaMinute = Math.floor(totalPaliaSeconds / 60) % 60;
 
     // Determine AM/PM and adjust hour for 12-hour format
     let amPm = paliaHour >= 12 ? 'PM' : 'AM';
