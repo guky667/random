@@ -15,11 +15,11 @@ function updatePaliaTime() {
     let unixTimestamp = new Date().getTime();
 
     // Calculate total Palia seconds
-    let totalPaliaSeconds = Math.floor((unixTimestamp + offset) * 0.024);
+    let paliaTimestamp = unixTimestamp * 24 + offset;
 
     // Calculate in-game hours and minutes
-    let paliaHour = Math.floor(totalPaliaSeconds / 3600) % 24;
-    let paliaMinute = Math.floor(totalPaliaSeconds / 60) % 60;
+    let paliaHour = Math.floor(paliaTimestamp / 3600000) % 24;
+    let paliaMinute = Math.floor(paliaTimestamp / 60000) % 60;
 
     // Determine AM/PM and adjust hour for 12-hour format
     let amPm = paliaHour >= 12 ? 'PM' : 'AM';
@@ -57,6 +57,8 @@ function updatePaliaTime() {
         // Apply the rotation: 48 degrees offset - to rotate the pointer image starting in the top-left to the top (morning) - and 180 because it starts at night actually, lmao
         document.getElementById('cursor').style.transform = `rotate(${ angle + 48 + 180 }deg)`;
     }
+
+    console.log('v.1') // just a hardcoded print so I can check the latest changes made it through
 
     // Initial call to display the cursor immediately
     updatePaliaTime();
