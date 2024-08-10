@@ -57,7 +57,7 @@ function updatePaliaTime() {
         document.getElementById('cursor').style.transform = `rotate(${ angle + 48 + 180 }deg)`;
     }
 
-    console.log('v1.1') // just a hardcoded print so I can check the latest changes made it through
+    console.log('v1.2') // just a hardcoded print so I can check the latest changes made it through
 
     // Initial call to display the cursor immediately
     updatePaliaTime();
