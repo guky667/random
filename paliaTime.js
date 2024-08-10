@@ -15,7 +15,7 @@ function updatePaliaTime() {
     let unixTimestamp = new Date().getTime();
 
     // Calculate total Palia seconds
-    let paliaTimestamp = unixTimestamp * 24 + offset;
+    let paliaTimestamp = (unixTimestamp + offset) * 24;
 
     // Calculate in-game hours and minutes
     let paliaHour = Math.floor(paliaTimestamp / 3600000) % 24;
