@@ -12,14 +12,21 @@ if (isNaN(offset)) {
 }
 
 function updatePaliaTime() {
-    let unixTimestamp = new Date().getTime();
+    // Get the current Terran time components
+    let currentDate = new Date();
+    let terranMinutes = currentDate.getMinutes();
+    let terranSeconds = currentDate.getSeconds();
+    let terranMilliseconds = currentDate.getMilliseconds();
 
-    // Calculate total Palia seconds
-    let paliaTimestamp = (unixTimestamp + offset) * 24;
+    // Calculate the total Terran milliseconds since the start of the current hour
+    let totalTerranMilliseconds = (terranMinutes * 60 * 1000) + (terranSeconds * 1000) + (terranMilliseconds + offset);
+
+    // Apply the scaling factor (24) to convert to Palian time
+    let totalPalianMilliseconds = totalTerranMilliseconds * 24;
 
     // Calculate in-game hours and minutes
-    let paliaHour = Math.floor(paliaTimestamp / 3600000) % 24;
-    let paliaMinute = Math.floor(paliaTimestamp / 60000) % 60;
+    let paliaHour = Math.floor(totalPalianMilliseconds / 3600000) % 24;
+    let paliaMinute = Math.floor((totalPalianMilliseconds % 3600000) / 60000);
 
     // Determine AM/PM and adjust hour for 12-hour format
     let amPm = paliaHour >= 12 ? 'PM' : 'AM';
@@ -57,7 +64,7 @@ function updatePaliaTime() {
         document.getElementById('cursor').style.transform = `rotate(${ angle + 48 + 180 }deg)`;
     }
 
-    console.log('v1.2') // just a hardcoded print so I can check the latest changes made it through
+    console.log('v1.3') // just a hardcoded print so I can check the latest changes made it through
 
     // Initial call to display the cursor immediately
     updatePaliaTime();
