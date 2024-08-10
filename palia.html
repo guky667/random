@@ -9,12 +9,28 @@
     <link rel="icon" type="image/png" href="https://guky667.github.io/random/icon-logo.png">
 
     <style>
+        #cursor{
+            z-index: 2 !important;
+        }
+
         body {
             background-color: black;
             color: white;
             font-family: 'Brush Script MT', cursive;
             font-size: 1em;
             overflow: hidden;
+        }
+
+        h1, h2
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        .elderwood-background{
+            background-image: url("https://images.ctfassets.net/qyr5bjm559gz/QbNRHVn0MA7eb7IKGGQOy/815e29234ef1ddb5e82e5fc93135caf9/AZ2_Promo_Gif.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .time-container
@@ -26,23 +42,22 @@
             flex-direction: column;
         }
 
-        .clock{
+        .clock-container{
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        h1, h2
-        {
-            margin: 0;
-            padding: 0;
+        .clock-main{
+            position: absolute; z-index: -1
         }
 
-        #cursor{
-            z-index: 2 !important;
+        .star{
+            position: absolute; 
+            padding-top: 6px
         }
 
-        #pill{
+        .time-background{
             background-color: #3a405773;
             padding-top: 0.2em;
             padding-bottom: 0.2em;
@@ -51,26 +66,53 @@
             margin: 1em;
             border-radius: 20px;
         }
-        .bg{
-            background-image: url("https://images.ctfassets.net/qyr5bjm559gz/QbNRHVn0MA7eb7IKGGQOy/815e29234ef1ddb5e82e5fc93135caf9/AZ2_Promo_Gif.gif");
-            background-repeat: no-repeat;
-            background-size: cover;
+
+        .pip {
+            position: absolute;
+            margin: 0;
+            left: 0.5em;
+            top: 0.5em;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+
+        .pip:hover {
+            opacity: 1 !important;
+        }
+
+        .tooltip {
+            position: absolute;
+            margin: 0;
+            top: 0.5em;
+            left: 3em;
+            cursor: default;
+            display: inline;
+            background-color: rgba(50, 50, 50, 0.7);
+            opacity: 0;
+        }
+
+        .pip:hover + .tooltip {
+            opacity: 1 !important;
         }
     </style>
 </head>
-<body class="bg">
+<body class="elderwood-background">
     <div class="time-container">
-        <div class="clock">
-            <img src="https://guky667.github.io/random/empty-clock.png" style="position: absolute; z-index: -1">
-            <img id="star" style="position: absolute; padding-top: 6px">
+        <button class="pip" onclick="javascript:window.open('https://guky667.github.io/random/palia.html', '','width=200,height=280')">🖼️</button>
+        <p class="tooltip">Click to open pip</p>
+       
+        <div class="clock-container">
+            <img src="https://guky667.github.io/random/empty-clock.png" class="clock-main">
+            <img id="star" class="star">
             <img src="https://guky667.github.io/random/big.png" id="cursor">
         </div>
-        <div id="pill">
+        <div class="time-background">
             <h1 id="palia-time"></h1> 
         </div>
         
         <h2 id="time-period"></h2>
     </div>
+
     <script src="https://guky667.github.io/random/paliaTime.js"></script>
 </body>
 </html>
