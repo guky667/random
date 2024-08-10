@@ -1,12 +1,12 @@
 // There seems to be a bit of an offset between reading the local time and what the in-game clock shows,
-// so we'll have to adjust for that - modify your local storage if it doesn't perfectly match - for me 2231 worked perfectly
+// so we'll have to adjust for that - modify your local storage if it doesn't perfectly match
 
 // Read the offset value from local storage
 let offset = parseInt(localStorage.getItem('paliaOffset'));
 
 // If no offset is found or it's not a valid number, use the default offset
 if (isNaN(offset)) {
-    offset = 2000; // those are ms
+    offset = 0; // those are ms
     // Set default offset in local storage
     localStorage.setItem('paliaOffset', offset.toString());
 }
